@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saumyadeep Chakraborty — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --accent: #1D9E75;
+    --accent-dim: #0F6E56;
+    --bg: #ffffff;
+    --bg2: #f6f6f4;
+    --bg3: #efefec;
+    --t1: #1a1a18;
+    --t2: #5f5e5a;
+    --br: rgba(0,0,0,0.1);
+    --green-light: #E1F5EE;
+    --green-mid: #5DCAA5;
+    --green-dark: #085041;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18;
+      --bg2: #222220;
+      --bg3: #2a2a27;
+      --t1: #f0efe8;
+      --t2: #9a9891;
+      --br: rgba(255,255,255,0.1);
+      --green-light: #04342C;
+      --green-mid: #0F6E56;
+      --green-dark: #9FE1CB;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    color: var(--t1);
+    background: var(--bg3);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--bg);
+    border-radius: 16px;
+    border: 0.5px solid var(--br);
+    padding: 2.5rem 2.5rem 3rem;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 0; }
+    .page { border-radius: 0; padding: 1.5rem 1.25rem 2.5rem; border: none; }
+  }
+
+  /* ── Header ── */
+  header { padding-bottom: 1.75rem; border-bottom: 0.5px solid var(--br); }
+  .name { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+  .role-line { font-size: 13px; color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-top: 5px; }
+  .tagline { font-size: 14px; color: var(--t2); margin-top: 10px; max-width: 540px; line-height: 1.65; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; }
+  .meta-item { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--t2); display: flex; align-items: center; gap: 5px; }
+  .meta-item i { font-size: 14px; color: var(--accent); }
+  .meta-item a { color: var(--t2); text-decoration: none; transition: color 0.15s; }
+  .meta-item a:hover { color: var(--accent); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .badge { font-size: 11px; font-family: 'JetBrains Mono', monospace; padding: 4px 10px; border-radius: 4px; border: 0.5px solid var(--br); color: var(--t2); background: var(--bg2); }
+  .badge.cert { background: var(--green-light); color: var(--green-dark); border-color: var(--green-mid); }
+
+  /* ── Sections ── */
+  section { padding: 1.75rem 0; border-bottom: 0.5px solid var(--br); }
+  section:last-child { border-bottom: none; padding-bottom: 0; }
+  .sec-label { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.25rem; }
+
+  /* ── Project cards ── */
+  .project { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 12px; padding: 1.5rem; margin-bottom: 14px; }
+  .project:last-child { margin-bottom: 0; }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .project-title { font-size: 16px; font-weight: 600; }
+  .project-sub { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--t2); margin-top: 3px; }
+  .duration-badge { font-size: 11px; font-family: 'JetBrains Mono', monospace; background: var(--green-light); color: var(--green-dark); border: 0.5px solid var(--green-mid); padding: 3px 10px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .project-desc { font-size: 13px; color: var(--t2); line-height: 1.65; margin-bottom: 10px; }
+  .project ul { padding-left: 18px; }
+  .project ul li { font-size: 13px; color: var(--t2); line-height: 1.8; margin-bottom: 3px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .ptag { font-size: 11px; font-family: 'JetBrains Mono', monospace; padding: 3px 8px; border-radius: 4px; border: 0.5px solid var(--br); color: var(--t2); background: var(--bg); }
+
+  /* ── Detail cards (inside projects) ── */
+  .detail-card { background: var(--bg); border: 0.5px solid var(--br); border-radius: 10px; padding: 1rem 1.25rem; margin-top: 12px; }
+  .detail-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+  .detail-desc { font-size: 13px; color: var(--t2); line-height: 1.65; margin-bottom: 8px; }
+
+  /* ── Canary / pulse ── */
+  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .pill { font-size: 10px; font-family: 'JetBrains Mono', monospace; background: var(--green-light); color: var(--green-dark); border: 0.5px solid var(--green-mid); padding: 3px 9px; border-radius: 3px; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+
+  .repo-block { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 8px; padding: 10px 12px; }
+  .repo-type { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--t2); margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+  .repo-type i { font-size: 13px; color: var(--accent); }
+  .repo-block ul { padding-left: 14px; }
+  .repo-block ul li { font-size: 12px; color: var(--t2); line-height: 1.8; }
+
+  .footer-note { font-size: 12px; color: var(--t2); margin-top: 10px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 6px; }
+  .footer-note i { font-size: 13px; color: var(--accent); }
+
+  /* ── Flow diagram ── */
+  .flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .flow-step { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 6px; padding: 5px 10px; font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--t1); white-space: nowrap; }
+  .flow-arrow { color: var(--t2); font-size: 13px; }
+
+  .output-box { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--t2); line-height: 1.9; }
+  .output-label { font-size: 10px; color: var(--accent); margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── Params grid ── */
+  .params-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 8px; }
+  .param { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 6px; padding: 7px 10px; display: flex; align-items: center; gap: 7px; }
+  .param i { font-size: 14px; color: var(--accent); flex-shrink: 0; }
+  .param span { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--t2); }
+
+  /* ── Skills ── */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .skill-card { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 8px; padding: 12px 14px; }
+  .sk-cat { font-size: 11px; color: var(--t2); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+  .sk-items { font-size: 13px; line-height: 1.9; color: var(--t1); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="name">Saumyadeep Chakraborty</div>
+    <div class="role-line">Analyst @ Deloitte USI &nbsp;·&nbsp; 5.4 years &nbsp;·&nbsp; Cloud Infra & DevOps</div>
+    <div class="tagline">Cloud infrastructure specialist with 5.4 years at Deloitte USI across two project engagements — multi-cloud infrastructure & automation, and DevOps toolchain ownership. RHCSA certified.</div>
+    <div class="meta-row">
+      <span class="meta-item"><i class="ti ti-mail"></i><a href="mailto:sdeepchakraborty4@gmail.com">sdeepchakraborty4@gmail.com</a></span>
+      <span class="meta-item"><i class="ti ti-phone"></i>+91 70033 27722</span>
+      <span class="meta-item"><i class="ti ti-brand-linkedin"></i><a href="https://www.linkedin.com/in/saumyadeep-chakraborty/" target="_blank" rel="noopener">linkedin</a></span>
+      <span class="meta-item"><i class="ti ti-brand-github"></i><a href="https://github.com/Saumyadeep4" target="_blank" rel="noopener">github</a></span>
+    </div>
+    <div class="badges">
+      <span class="badge cert"><i class="ti ti-certificate"></i> RHCSA Certified</span>
+      <span class="badge">AWS Lambda</span>
+      <span class="badge">CloudFormation</span>
+      <span class="badge">AWS EC2</span>
+      <span class="badge">Oracle Cloud</span>
+      <span class="badge">GitLab CI/CD</span>
+      <span class="badge">GitLab Admin</span>
+      <span class="badge">GitHub</span>
+      <span class="badge">GitHub Actions</span>
+      <span class="badge">Artifactory</span>
+      <span class="badge">Kubernetes</span>
+      <span class="badge">Linux · Windows</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">Projects</div>
+
+    <!-- Project 1: DevOps Toolchain -->
+    <div class="project">
+      <div class="project-header">
+        <div>
+          <div class="project-title">DevOps Toolchain Administration</div>
+          <div class="project-sub">Deloitte USI · Analyst</div>
+        </div>
+        <span class="duration-badge">1 year · current</span>
+      </div>
+      <div class="project-desc">End-to-end ownership of the organisation's DevOps toolchain — self-managed GitLab, GitHub, and Artifactory (on Kubernetes). Responsible for availability, access governance, automation, and proactive health monitoring.</div>
+      <ul>
+        <li>Administer self-hosted GitLab on Ubuntu VM — upgrades, user/group management, runner config, and integrations</li>
+        <li>Manage GitHub organisation and Artifactory repositories; support Artifactory-on-Kubernetes operations</li>
+        <li>Built scheduled CI pipeline to validate Artifactory health every 30 minutes — proactively catches failures before users are impacted</li>
+        <li>Authored two-script inactive-user toolkit — detect 60-day inactive GitLab accounts, generate audit report, bulk-block via API</li>
+        <li>Executed GitLab DR test: restored production backup into pre-production environment, validating full recovery procedures</li>
+      </ul>
+
+      <div class="detail-card">
+        <div class="row">
+          <div class="pulse"></div>
+          <span style="font-size:13px;font-weight:500">Artifactory health validation — runs every 30 min</span>
+          <span class="pill">early warning system</span>
+        </div>
+        <div class="detail-desc">Performs real push/pull operations on Artifactory every 30 minutes. If the pipeline fails, the team knows before any user raises a complaint — time to investigate and fix proactively.</div>
+        <div class="two-col">
+          <div class="repo-block">
+            <div class="repo-type"><i class="ti ti-brand-docker"></i>Docker repo</div>
+            <ul>
+              <li>Build Docker image</li>
+              <li>Tag as <code style="font-family:'JetBrains Mono',monospace;font-size:11px">devtools:&lt;datetime&gt;</code></li>
+              <li>Push to Artifactory</li>
+              <li>Pull image back down</li>
+              <li>Delete older images</li>
+            </ul>
+          </div>
+          <div class="repo-block">
+            <div class="repo-type"><i class="ti ti-file-text"></i>Generic repo</div>
+            <ul>
+              <li>Generate 5 MB test file</li>
+              <li>Upload to Artifactory</li>
+              <li>Download file back</li>
+              <li>Delete older files</li>
+              <li>Keep only latest artifact</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-note"><i class="ti ti-clock"></i>Latest artifact always retained · older ones auto-deleted after each run</div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-title">GitLab inactive user audit &amp; access revocation</div>
+        <div class="detail-desc">Two-script toolkit to enforce access hygiene. Script 1 queries the GitLab API, filters users inactive for 60+ days, and writes a structured report. Script 2 reads that report and bulk-blocks the accounts via API.</div>
+        <div class="flow">
+          <div class="flow-step">script 1 — audit</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">query GitLab API</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">filter &gt;60 days inactive</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">report.txt</div>
+        </div>
+        <div class="output-box">
+          <div class="output-label">report.txt</div>
+          username | full_name &nbsp;| last_login_date<br>
+          jdoe &nbsp;&nbsp;&nbsp;&nbsp; | John Doe &nbsp;&nbsp;| 2025-02-10<br>
+          asmith &nbsp;&nbsp; | Amy Smith &nbsp;| 2025-01-28
+        </div>
+        <div class="flow" style="margin-top:8px">
+          <div class="flow-step">script 2 — block</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">reads report.txt</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">GitLab API block call</div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">users blocked</div>
+        </div>
+        <div class="footer-note"><i class="ti ti-player-play"></i>Currently manual · roadmap: promote to scheduled GitLab CI pipeline</div>
+      </div>
+
+      <div class="project-tags">
+        <span class="ptag">GitLab CI/CD</span><span class="ptag">GitLab Admin</span><span class="ptag">GitHub</span><span class="ptag">Artifactory</span><span class="ptag">Kubernetes</span><span class="ptag">Ubuntu</span><span class="ptag">Bash</span><span class="ptag">DR testing</span>
+      </div>
+    </div>
+
+    <!-- Project 2: Cloud Infra -->
+    <div class="project">
+      <div class="project-header">
+        <div>
+          <div class="project-title">Cloud Infrastructure &amp; Systems Administration</div>
+          <div class="project-sub">Deloitte USI · Analyst</div>
+        </div>
+        <span class="duration-badge">4 years</span>
+      </div>
+      <div class="project-desc">Multi-cloud infrastructure administration across AWS and Oracle Cloud — covering provisioning, IaC-driven automation, OS patching, cost management, and day-to-day operations for Linux and Windows environments.</div>
+      <ul>
+        <li>Built Lambda automation for cross-account EC2 backup orchestration from a central AWS account — centralised visibility, consistent retention, zero manual effort</li>
+        <li>Implemented cross-account Windows OS patching via Lambda with KB-level patch targeting using cross-account IAM roles</li>
+        <li>Deployed EC2 start/stop schedules using AWS Instance Scheduler and CloudFormation — aligned to client business hours to reduce cost</li>
+        <li>Built a reusable CloudFormation-based EC2 deployment template — parameterised inputs, supports spinning up multiple identical instances on demand</li>
+        <li>Managed cloud resource provisioning, monitoring, cost control, and security baselines on AWS and Oracle Cloud</li>
+        <li>Administered Linux (RHEL/Ubuntu) and Windows Server environments; earned RHCSA certification</li>
+      </ul>
+
+      <div class="detail-card">
+        <div class="detail-title">EC2 deployment — CloudFormation template</div>
+        <div class="detail-desc">Parameterised CloudFormation stack that provisions one or more EC2 instances from a single input set. Eliminates manual console clicks and ensures consistent, repeatable deployments across environments.</div>
+        <div class="params-grid">
+          <div class="param"><i class="ti ti-photo"></i><span>AMI ID</span></div>
+          <div class="param"><i class="ti ti-cpu"></i><span>Instance type</span></div>
+          <div class="param"><i class="ti ti-tag"></i><span>EC2 name</span></div>
+          <div class="param"><i class="ti ti-network"></i><span>VPC ID</span></div>
+          <div class="param"><i class="ti ti-circle-dotted"></i><span>Subnet ID</span></div>
+          <div class="param"><i class="ti ti-shield"></i><span>Security group</span></div>
+          <div class="param"><i class="ti ti-map-pin"></i><span>Region</span></div>
+          <div class="param"><i class="ti ti-copy"></i><span>Instance count (N×)</span></div>
+        </div>
+        <div class="footer-note"><i class="ti ti-stack"></i>Scalable — same parameters spin up any number of identical instances</div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-title">EC2 start/stop scheduling — AWS Instance Scheduler</div>
+        <div class="detail-desc" style="margin-bottom:0">Implemented automated EC2 start/stop schedules via AWS Instance Scheduler deployed as a CloudFormation stack. Schedules aligned to client business hours, reducing unnecessary runtime and cloud spend outside working windows.</div>
+      </div>
+
+      <div class="project-tags">
+        <span class="ptag">AWS EC2</span><span class="ptag">AWS Lambda</span><span class="ptag">CloudFormation</span><span class="ptag">Instance Scheduler</span><span class="ptag">IAM / cross-account</span><span class="ptag">Oracle Cloud</span><span class="ptag">RHEL / Linux</span><span class="ptag">Windows Server</span><span class="ptag">RHCSA</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Skills</div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="sk-cat">Cloud</div>
+        <div class="sk-items">AWS (EC2, Lambda, IAM)<br>Oracle Cloud<br>Cross-account roles<br>CloudFormation / IaC</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Automation</div>
+        <div class="sk-items">AWS Lambda<br>Instance Scheduler<br>EC2 backup & patching<br>GitLab CI/CD pipelines</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">DevOps toolchain</div>
+        <div class="sk-items">GitLab (self-hosted)<br>GitHub<br>Artifactory<br>Kubernetes</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Systems</div>
+        <div class="sk-items">RHEL / Linux<br>Windows Server<br>Ubuntu<br>VM administration</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-cat">Ops & security</div>
+        <div class="sk-items">Backup & DR<br>Patch management<br>Access governance<br>Health monitoring</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
