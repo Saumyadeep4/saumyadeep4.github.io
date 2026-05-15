@@ -64,6 +64,65 @@
 
   /* ── Header ── */
   header { padding-bottom: 1.75rem; border-bottom: 0.5px solid var(--br); }
+  .header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.profile-pic {
+  width: 115px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 0.5px solid var(--br);
+  flex-shrink: 0;
+  filter: grayscale(100%);
+}
+
+@media (max-width: 640px) {
+  .header-top {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .profile-pic {
+    width: 90px;
+    height: 90px;
+  }
+}
+  .header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 0.5px solid var(--br);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .header-top {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .profile-pic {
+    width: 90px;
+    height: 90px;
+  }
+}
   .name { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
   .role-line { font-size: 13px; color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-top: 5px; }
   .tagline { font-size: 14px; color: var(--t2); margin-top: 10px; max-width: 540px; line-height: 1.65; }
@@ -141,31 +200,74 @@
 <body>
 <div class="page">
 
-  <header>
-    <div class="name">Saumyadeep Chakraborty</div>
-    <div class="role-line">Analyst @ Deloitte USI &nbsp;·&nbsp; 5.4 years &nbsp;·&nbsp; Cloud Infra & DevOps</div>
-    <div class="tagline">Cloud infrastructure specialist with 5.4 years at Deloitte USI across two project engagements — multi-cloud infrastructure & automation, and DevOps toolchain ownership. RHCSA certified.</div>
-    <div class="meta-row">
-      <span class="meta-item"><i class="ti ti-mail"></i><a href="mailto:sdeepchakraborty4@gmail.com">sdeepchakraborty4@gmail.com</a></span>
-      <span class="meta-item"><i class="ti ti-phone"></i>+91 70033 27722</span>
-      <span class="meta-item"><i class="ti ti-brand-linkedin"></i><a href="https://www.linkedin.com/in/saumyadeep-chakraborty/" target="_blank" rel="noopener">linkedin</a></span>
-      <span class="meta-item"><i class="ti ti-brand-github"></i><a href="https://github.com/Saumyadeep4" target="_blank" rel="noopener">github</a></span>
+<header>
+
+  <div class="header-top">
+
+    <div class="header-content">
+      <div class="name">Saumyadeep Chakraborty</div>
+
+      <div class="role-line">
+        Analyst @ Deloitte USI &nbsp;·&nbsp; 5.4 years &nbsp;·&nbsp; Cloud Infra & DevOps
+      </div>
+
+      <div class="tagline">
+        Cloud & DevOps engineer focused on infrastructure automation, self-hosted DevOps platforms, and operational reliability across AWS, GitLab, Kubernetes, and Linux environments.
+      </div>
+
+      <div class="meta-row">
+        <span class="meta-item">
+          <i class="ti ti-mail"></i>
+          <a href="mailto:sdeepchakraborty4@gmail.com">
+            sdeepchakraborty4@gmail.com
+          </a>
+        </span>
+
+        <span class="meta-item">
+          <i class="ti ti-phone"></i>
+          +91 70033 27722
+        </span>
+
+        <span class="meta-item">
+          <i class="ti ti-brand-linkedin"></i>
+          <a href="https://www.linkedin.com/in/saumyadeep-chakraborty/" target="_blank" rel="noopener">
+            linkedin
+          </a>
+        </span>
+
+        <span class="meta-item">
+          <i class="ti ti-brand-github"></i>
+          <a href="https://github.com/Saumyadeep4" target="_blank" rel="noopener">
+            github
+          </a>
+        </span>
+      </div>
+
+      <div class="badges">
+        <span class="badge cert">
+          <i class="ti ti-certificate"></i>
+          RHCSA Certified
+        </span>
+
+        <span class="badge">AWS Lambda</span>
+        <span class="badge">CloudFormation</span>
+        <span class="badge">AWS EC2</span>
+        <span class="badge">Oracle Cloud</span>
+        <span class="badge">GitLab CI/CD</span>
+        <span class="badge">GitLab Admin</span>
+        <span class="badge">GitHub</span>
+        <span class="badge">GitHub Actions</span>
+        <span class="badge">Artifactory</span>
+        <span class="badge">Kubernetes</span>
+        <span class="badge">Linux · Windows</span>
+      </div>
     </div>
-    <div class="badges">
-      <span class="badge cert"><i class="ti ti-certificate"></i> RHCSA Certified</span>
-      <span class="badge">AWS Lambda</span>
-      <span class="badge">CloudFormation</span>
-      <span class="badge">AWS EC2</span>
-      <span class="badge">Oracle Cloud</span>
-      <span class="badge">GitLab CI/CD</span>
-      <span class="badge">GitLab Admin</span>
-      <span class="badge">GitHub</span>
-      <span class="badge">GitHub Actions</span>
-      <span class="badge">Artifactory</span>
-      <span class="badge">Kubernetes</span>
-      <span class="badge">Linux · Windows</span>
-    </div>
-  </header>
+
+    <img src="profile.jpg" alt="Profile photo" class="profile-pic">
+
+  </div>
+
+</header>
 
   <section>
     <div class="sec-label">Projects</div>
