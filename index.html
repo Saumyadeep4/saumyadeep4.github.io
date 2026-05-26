@@ -1,434 +1,539 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saumyadeep Chakraborty — Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-  :root {
-    --accent: #1D9E75;
-    --accent-dim: #0F6E56;
-    --bg: #ffffff;
-    --bg2: #f6f6f4;
-    --bg3: #efefec;
-    --t1: #1a1a18;
-    --t2: #5f5e5a;
-    --br: rgba(0,0,0,0.1);
-    --green-light: #E1F5EE;
-    --green-mid: #5DCAA5;
-    --green-dark: #085041;
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0e17;
+    --bg2:#111827;
+    --bg3:#1a2235;
+    --accent:#4f9eff;
+    --accent2:#00d4aa;
+    --accent3:#f59e0b;
+    --text:#e2e8f0;
+    --muted:#64748b;
+    --border:#1e2d45;
+    --card:#111827;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1a18;
-      --bg2: #222220;
-      --bg3: #2a2a27;
-      --t1: #f0efe8;
-      --t2: #9a9891;
-      --br: rgba(255,255,255,0.1);
-      --green-light: #04342C;
-      --green-mid: #0F6E56;
-      --green-dark: #9FE1CB;
-    }
+  body{
+    font-family:'Space Grotesk',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
   }
 
-  html { scroll-behavior: smooth; }
+  .mono{font-family:'JetBrains Mono',monospace}
 
-  body {
-    font-family: 'Syne', sans-serif;
-    color: var(--t1);
-    background: var(--bg3);
-    min-height: 100vh;
-    padding: 2rem 1rem;
+  /* CANVAS BG */
+  #canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.35}
+
+  .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:16px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+    background:rgba(10,14,23,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);letter-spacing:0.05em}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;letter-spacing:0.03em}
+  .nav-links a:hover{color:var(--accent)}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding-top:80px;
+  }
+  .hero-inner{max-width:700px}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--accent2);
+    background:rgba(0,212,170,0.08);
+    border:1px solid rgba(0,212,170,0.2);
+    padding:6px 14px;border-radius:20px;
+    margin-bottom:28px;
+    animation:fadeUp 0.6s ease both;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+
+  .hero h1{
+    font-size:clamp(36px,6vw,64px);
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:20px;
+    animation:fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 .name{
+    background:linear-gradient(135deg,#4f9eff,#00d4aa);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .hero-sub{
+    font-size:18px;color:var(--muted);line-height:1.7;
+    margin-bottom:36px;max-width:560px;
+    animation:fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both}
+  .btn-primary{
+    padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;
+    background:var(--accent);color:#fff;border:none;cursor:pointer;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    transition:all 0.2s;letter-spacing:0.02em;
+  }
+  .btn-primary:hover{background:#3a8ef0;transform:translateY(-1px)}
+  .btn-outline{
+    padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;
+    background:transparent;color:var(--text);
+    border:1px solid var(--border);cursor:pointer;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    transition:all 0.2s;
+  }
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+  /* STATS */
+  .stats{
+    display:flex;gap:40px;margin-top:56px;padding-top:40px;
+    border-top:1px solid var(--border);
+    animation:fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-num{font-size:32px;font-weight:700;color:var(--accent);font-family:'JetBrains Mono',monospace}
+  .stat-label{font-size:13px;color:var(--muted);margin-top:4px}
+
+  /* SECTIONS */
+  section{padding:80px 0}
+  .sec-tag{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;
+    margin-bottom:12px;display:flex;align-items:center;gap:10px;
+  }
+  .sec-tag::after{content:'';flex:0 0 40px;height:1px;background:var(--accent);opacity:0.4}
+  h2{font-size:32px;font-weight:700;margin-bottom:48px;line-height:1.2}
+
+  /* SKILLS GRID */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .skill-card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:12px;padding:20px;
+    transition:all 0.25s;cursor:default;
+    position:relative;overflow:hidden;
+  }
+  .skill-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transform:scaleX(0);transform-origin:left;
+    transition:transform 0.3s;
+  }
+  .skill-card:hover::before{transform:scaleX(1)}
+  .skill-card:hover{border-color:rgba(79,158,255,0.3);transform:translateY(-2px);background:#141e2f}
+  .skill-icon{font-size:22px;margin-bottom:12px}
+  .skill-name{font-size:14px;font-weight:600;margin-bottom:6px}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .tag{
+    font-size:11px;font-family:'JetBrains Mono',monospace;
+    background:rgba(79,158,255,0.08);color:var(--accent);
+    border:1px solid rgba(79,158,255,0.2);
+    padding:3px 8px;border-radius:4px;
+  }
+  .tag.green{background:rgba(0,212,170,0.08);color:var(--accent2);border-color:rgba(0,212,170,0.2)}
+  .tag.amber{background:rgba(245,158,11,0.08);color:var(--accent3);border-color:rgba(245,158,11,0.2)}
+
+  /* PROJECTS */
+  .projects-grid{display:grid;gap:20px}
+  .project-card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:16px;padding:28px;
+    display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;
+    transition:all 0.25s;position:relative;overflow:hidden;
+  }
+  .project-card::after{
+    content:'';position:absolute;
+    top:0;left:0;width:3px;height:100%;
+    background:linear-gradient(180deg,var(--accent),var(--accent2));
+    opacity:0;transition:opacity 0.3s;
+  }
+  .project-card:hover::after{opacity:1}
+  .project-card:hover{border-color:rgba(79,158,255,0.25);transform:translateX(4px)}
+  .proj-title{font-size:18px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .proj-badge{
+    font-size:10px;font-family:'JetBrains Mono',monospace;
+    background:rgba(0,212,170,0.1);color:var(--accent2);
+    border:1px solid rgba(0,212,170,0.25);
+    padding:2px 8px;border-radius:4px;font-weight:500;
+  }
+  .proj-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+  .proj-impact{
+    font-size:13px;font-family:'JetBrains Mono',monospace;
+    color:var(--accent3);
+    background:rgba(245,158,11,0.06);
+    border:1px solid rgba(245,158,11,0.15);
+    border-radius:6px;padding:8px 12px;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .proj-arrow{
+    font-size:20px;color:var(--muted);transition:color 0.2s;
+    padding-top:4px;flex-shrink:0;
+  }
+  .project-card:hover .proj-arrow{color:var(--accent)}
+
+  /* EXPERIENCE */
+  .exp-timeline{position:relative;padding-left:28px}
+  .exp-timeline::before{
+    content:'';position:absolute;left:0;top:8px;bottom:8px;
+    width:1px;background:linear-gradient(180deg,var(--accent),transparent);
+  }
+  .exp-item{position:relative;margin-bottom:48px}
+  .exp-item::before{
+    content:'';position:absolute;left:-33px;top:6px;
+    width:10px;height:10px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 3px rgba(79,158,255,0.15);
+  }
+  .exp-company{font-size:20px;font-weight:600;margin-bottom:4px}
+  .exp-role{font-size:14px;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:4px}
+  .exp-date{font-size:13px;color:var(--muted);margin-bottom:16px}
+  .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .exp-bullets li{
+    font-size:14px;color:var(--muted);line-height:1.7;
+    padding-left:16px;position:relative;
+  }
+  .exp-bullets li::before{content:'▹';position:absolute;left:0;color:var(--accent2)}
+
+  /* CERT SECTION */
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .cert-card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:12px;padding:20px;
+    display:flex;align-items:center;gap:16px;
+    transition:all 0.25s;
+  }
+  .cert-card:hover{border-color:rgba(79,158,255,0.3);transform:translateY(-2px)}
+  .cert-icon{
+    width:44px;height:44px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;flex-shrink:0;
+  }
+  .cert-icon.rh{background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.2)}
+  .cert-icon.aws{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)}
+  .cert-name{font-size:14px;font-weight:500}
+  .cert-year{font-size:12px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace}
+
+  /* CONTACT */
+  .contact-inner{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:20px;padding:48px;text-align:center;
+  }
+  .contact-inner h2{margin-bottom:16px}
+  .contact-sub{font-size:16px;color:var(--muted);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+  .contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+  .contact-link{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;
+    text-decoration:none;transition:all 0.2s;
+    border:1px solid var(--border);color:var(--text);
+  }
+  .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+  /* FOOTER */
+  footer{
+    text-align:center;padding:32px;
+    border-top:1px solid var(--border);
+    font-size:13px;color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
   }
 
-  .page {
-    max-width: 780px;
-    margin: 0 auto;
-    background: var(--bg);
-    border-radius: 16px;
-    border: 0.5px solid var(--br);
-    padding: 2.5rem 2.5rem 3rem;
-  }
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(24px);transition:all 0.6s ease}
+  .reveal.visible{opacity:1;transform:none}
 
-  @media (max-width: 600px) {
-    body { padding: 0; }
-    .page { border-radius: 0; padding: 1.5rem 1.25rem 2.5rem; border: none; }
-  }
-
-  /* ── Header ── */
-  header { padding-bottom: 1.75rem; border-bottom: 0.5px solid var(--br); }
-  .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 28px;
-}
-
-.header-content {
-  flex: 1;
-}
-
-.profile-pic {
-  width: 115px;
-  height: 115px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 0.5px solid var(--br);
-  flex-shrink: 0;
-  filter: grayscale(100%);
-}
-
-@media (max-width: 640px) {
-  .header-top {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-  .profile-pic {
-    width: 90px;
-    height: 90px;
-  }
-}
-  .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-}
-
-.profile-pic {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 0.5px solid var(--br);
-  flex-shrink: 0;
-}
-
-@media (max-width: 640px) {
-  .header-top {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-  .profile-pic {
-    width: 90px;
-    height: 90px;
-  }
-}
-  .name { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
-  .role-line { font-size: 13px; color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-top: 5px; }
-  .tagline { font-size: 14px; color: var(--t2); margin-top: 10px; max-width: 540px; line-height: 1.65; }
-  .meta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; }
-  .meta-item { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--t2); display: flex; align-items: center; gap: 5px; }
-  .meta-item i { font-size: 14px; color: var(--accent); }
-  .meta-item a { color: var(--t2); text-decoration: none; transition: color 0.15s; }
-  .meta-item a:hover { color: var(--accent); }
-  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .badge { font-size: 11px; font-family: 'JetBrains Mono', monospace; padding: 4px 10px; border-radius: 4px; border: 0.5px solid var(--br); color: var(--t2); background: var(--bg2); }
-  .badge.cert { background: var(--green-light); color: var(--green-dark); border-color: var(--green-mid); }
-
-  /* ── Sections ── */
-  section { padding: 1.75rem 0; border-bottom: 0.5px solid var(--br); }
-  section:last-child { border-bottom: none; padding-bottom: 0; }
-  .sec-label { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.25rem; }
-
-  /* ── Project cards ── */
-  .project { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 12px; padding: 1.5rem; margin-bottom: 14px; }
-  .project:last-child { margin-bottom: 0; }
-  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
-  .project-title { font-size: 16px; font-weight: 600; }
-  .project-sub { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--t2); margin-top: 3px; }
-  .duration-badge { font-size: 11px; font-family: 'JetBrains Mono', monospace; background: var(--green-light); color: var(--green-dark); border: 0.5px solid var(--green-mid); padding: 3px 10px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
-  .project-desc { font-size: 13px; color: var(--t2); line-height: 1.65; margin-bottom: 10px; }
-  .project ul { padding-left: 18px; }
-  .project ul li { font-size: 13px; color: var(--t2); line-height: 1.8; margin-bottom: 3px; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-  .ptag { font-size: 11px; font-family: 'JetBrains Mono', monospace; padding: 3px 8px; border-radius: 4px; border: 0.5px solid var(--br); color: var(--t2); background: var(--bg); }
-
-  /* ── Detail cards (inside projects) ── */
-  .detail-card { background: var(--bg); border: 0.5px solid var(--br); border-radius: 10px; padding: 1rem 1.25rem; margin-top: 12px; }
-  .detail-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-  .detail-desc { font-size: 13px; color: var(--t2); line-height: 1.65; margin-bottom: 8px; }
-
-  /* ── Canary / pulse ── */
-  .row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
-  .pill { font-size: 10px; font-family: 'JetBrains Mono', monospace; background: var(--green-light); color: var(--green-dark); border: 0.5px solid var(--green-mid); padding: 3px 9px; border-radius: 3px; }
-  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: blink 2s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
-
-  .repo-block { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 8px; padding: 10px 12px; }
-  .repo-type { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--t2); margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
-  .repo-type i { font-size: 13px; color: var(--accent); }
-  .repo-block ul { padding-left: 14px; }
-  .repo-block ul li { font-size: 12px; color: var(--t2); line-height: 1.8; }
-
-  .footer-note { font-size: 12px; color: var(--t2); margin-top: 10px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 6px; }
-  .footer-note i { font-size: 13px; color: var(--accent); }
-
-  /* ── Flow diagram ── */
-  .flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-  .flow-step { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 6px; padding: 5px 10px; font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--t1); white-space: nowrap; }
-  .flow-arrow { color: var(--t2); font-size: 13px; }
-
-  .output-box { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--t2); line-height: 1.9; }
-  .output-label { font-size: 10px; color: var(--accent); margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
-
-  /* ── Params grid ── */
-  .params-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-top: 8px; }
-  .param { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 6px; padding: 7px 10px; display: flex; align-items: center; gap: 7px; }
-  .param i { font-size: 14px; color: var(--accent); flex-shrink: 0; }
-  .param span { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--t2); }
-
-  /* ── Skills ── */
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-  .skill-card { background: var(--bg2); border: 0.5px solid var(--br); border-radius: 8px; padding: 12px 14px; }
-  .sk-cat { font-size: 11px; color: var(--t2); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
-  .sk-items { font-size: 13px; line-height: 1.9; color: var(--t1); }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 </style>
-</head>
-<body>
-<div class="page">
 
-<header>
+<canvas id="canvas"></canvas>
 
-  <div class="header-top">
-
-    <div class="header-content">
-      <div class="name">Saumyadeep Chakraborty</div>
-
-      <div class="role-line">
-        Analyst @ Deloitte USI &nbsp;·&nbsp; 5.4 years &nbsp;·&nbsp; Cloud Infra & DevOps
-      </div>
-
-      <div class="tagline">
-        Cloud & DevOps engineer focused on infrastructure automation, self-hosted DevOps platforms, and operational reliability across AWS, GitLab, Kubernetes, and Linux environments.
-      </div>
-
-      <div class="meta-row">
-        <span class="meta-item">
-          <i class="ti ti-mail"></i>
-          <a href="mailto:sdeepchakraborty4@gmail.com">
-            sdeepchakraborty4@gmail.com
-          </a>
-        </span>
-
-        <span class="meta-item">
-          <i class="ti ti-phone"></i>
-          +91 70033 27722
-        </span>
-
-        <span class="meta-item">
-          <i class="ti ti-brand-linkedin"></i>
-          <a href="https://www.linkedin.com/in/saumyadeep-chakraborty/" target="_blank" rel="noopener">
-            linkedin
-          </a>
-        </span>
-
-        <span class="meta-item">
-          <i class="ti ti-brand-github"></i>
-          <a href="https://github.com/Saumyadeep4" target="_blank" rel="noopener">
-            github
-          </a>
-        </span>
-      </div>
-
-      <div class="badges">
-        <span class="badge cert">
-          <i class="ti ti-certificate"></i>
-          RHCSA Certified
-        </span>
-
-        <span class="badge">AWS Lambda</span>
-        <span class="badge">CloudFormation</span>
-        <span class="badge">AWS EC2</span>
-        <span class="badge">Oracle Cloud</span>
-        <span class="badge">GitLab CI/CD</span>
-        <span class="badge">GitLab Admin</span>
-        <span class="badge">GitHub</span>
-        <span class="badge">GitHub Actions</span>
-        <span class="badge">Artifactory</span>
-        <span class="badge">Kubernetes</span>
-        <span class="badge">Linux · Windows</span>
-      </div>
-    </div>
-
-    <img src="profile.jpg" alt="Profile photo" class="profile-pic">
-
+<nav>
+  <div class="nav-logo">SC.dev</div>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#skills">skills</a>
+    <a href="#projects">projects</a>
+    <a href="#experience">experience</a>
+    <a href="#contact">contact</a>
   </div>
+</nav>
 
-</header>
+<div class="wrap">
 
-  <section>
-    <div class="sec-label">Projects</div>
-
-    <!-- Project 1: DevOps Toolchain -->
-    <div class="project">
-      <div class="project-header">
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Available for Cloud Platform roles
+      </div>
+      <h1>Hi, I'm <span class="name">Saumyadeep</span><br>Chakraborty</h1>
+      <p class="hero-sub">Cloud Platform Engineer with 5+ years building and automating enterprise infrastructure at scale — AWS, Terraform, Python, Linux. RHCSA certified. Based in Kolkata, India.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="stats">
         <div>
-          <div class="project-title">DevOps Toolchain Administration</div>
-          <div class="project-sub">Deloitte USI · Analyst</div>
+          <div class="stat-num mono">5+</div>
+          <div class="stat-label">Years Experience</div>
         </div>
-        <span class="duration-badge">1 year · current</span>
-      </div>
-      <div class="project-desc">End-to-end ownership of the organisation's DevOps toolchain — self-managed GitLab, GitHub, and Artifactory (on Kubernetes). Responsible for availability, access governance, automation, and proactive health monitoring.</div>
-      <ul>
-        <li>Administer self-hosted GitLab on Ubuntu VM — upgrades, user/group management, runner config, and integrations</li>
-        <li>Manage GitHub organisation and Artifactory repositories; support Artifactory-on-Kubernetes operations</li>
-        <li>Built scheduled CI pipeline to validate Artifactory health every 30 minutes — proactively catches failures before users are impacted</li>
-        <li>Authored two-script inactive-user toolkit — detect 60-day inactive GitLab accounts, generate audit report, bulk-block via API</li>
-        <li>Executed GitLab DR test: restored production backup into pre-production environment, validating full recovery procedures</li>
-      </ul>
-
-      <div class="detail-card">
-        <div class="row">
-          <div class="pulse"></div>
-          <span style="font-size:13px;font-weight:500">Artifactory health validation — runs every 30 min</span>
-          <span class="pill">early warning system</span>
-        </div>
-        <div class="detail-desc">Performs real push/pull operations on Artifactory every 30 minutes. If the pipeline fails, the team knows before any user raises a complaint — time to investigate and fix proactively.</div>
-        <div class="two-col">
-          <div class="repo-block">
-            <div class="repo-type"><i class="ti ti-brand-docker"></i>Docker repo</div>
-            <ul>
-              <li>Build Docker image</li>
-              <li>Tag as <code style="font-family:'JetBrains Mono',monospace;font-size:11px">devtools:&lt;datetime&gt;</code></li>
-              <li>Push to Artifactory</li>
-              <li>Pull image back down</li>
-              <li>Delete older images</li>
-            </ul>
-          </div>
-          <div class="repo-block">
-            <div class="repo-type"><i class="ti ti-file-text"></i>Generic repo</div>
-            <ul>
-              <li>Generate 5 MB test file</li>
-              <li>Upload to Artifactory</li>
-              <li>Download file back</li>
-              <li>Delete older files</li>
-              <li>Keep only latest artifact</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-note"><i class="ti ti-clock"></i>Latest artifact always retained · older ones auto-deleted after each run</div>
-      </div>
-
-      <div class="detail-card">
-        <div class="detail-title">GitLab inactive user audit &amp; access revocation</div>
-        <div class="detail-desc">Two-script toolkit to enforce access hygiene. Script 1 queries the GitLab API, filters users inactive for 60+ days, and writes a structured report. Script 2 reads that report and bulk-blocks the accounts via API.</div>
-        <div class="flow">
-          <div class="flow-step">script 1 — audit</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">query GitLab API</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">filter &gt;60 days inactive</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">report.txt</div>
-        </div>
-        <div class="output-box">
-          <div class="output-label">report.txt</div>
-          username | full_name &nbsp;| last_login_date<br>
-          jdoe &nbsp;&nbsp;&nbsp;&nbsp; | John Doe &nbsp;&nbsp;| 2025-02-10<br>
-          asmith &nbsp;&nbsp; | Amy Smith &nbsp;| 2025-01-28
-        </div>
-        <div class="flow" style="margin-top:8px">
-          <div class="flow-step">script 2 — block</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">reads report.txt</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">GitLab API block call</div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">users blocked</div>
-        </div>
-        <div class="footer-note"><i class="ti ti-player-play"></i>Currently manual · roadmap: promote to scheduled GitLab CI pipeline</div>
-      </div>
-
-      <div class="project-tags">
-        <span class="ptag">GitLab CI/CD</span><span class="ptag">GitLab Admin</span><span class="ptag">GitHub</span><span class="ptag">Artifactory</span><span class="ptag">Kubernetes</span><span class="ptag">Ubuntu</span><span class="ptag">Bash</span><span class="ptag">DR testing</span>
-      </div>
-    </div>
-
-    <!-- Project 2: Cloud Infra -->
-    <div class="project">
-      <div class="project-header">
         <div>
-          <div class="project-title">Cloud Infrastructure &amp; Systems Administration</div>
-          <div class="project-sub">Deloitte USI · Analyst</div>
+          <div class="stat-num mono">200+</div>
+          <div class="stat-label">Production Servers</div>
         </div>
-        <span class="duration-badge">4 years</span>
-      </div>
-      <div class="project-desc">Multi-cloud infrastructure administration across AWS and Oracle Cloud — covering provisioning, IaC-driven automation, OS patching, cost management, and day-to-day operations for Linux and Windows environments.</div>
-      <ul>
-        <li>Built Lambda automation for cross-account EC2 backup orchestration from a central AWS account — centralised visibility, consistent retention, zero manual effort</li>
-        <li>Implemented cross-account Windows OS patching via Lambda with KB-level patch targeting using cross-account IAM roles</li>
-        <li>Deployed EC2 start/stop schedules using AWS Instance Scheduler and CloudFormation — aligned to client business hours to reduce cost</li>
-        <li>Built a reusable CloudFormation-based EC2 deployment template — parameterised inputs, supports spinning up multiple identical instances on demand</li>
-        <li>Managed cloud resource provisioning, monitoring, cost control, and security baselines on AWS and Oracle Cloud</li>
-        <li>Administered Linux (RHEL/Ubuntu) and Windows Server environments; earned RHCSA certification</li>
-      </ul>
-
-      <div class="detail-card">
-        <div class="detail-title">EC2 deployment — CloudFormation template</div>
-        <div class="detail-desc">Parameterised CloudFormation stack that provisions one or more EC2 instances from a single input set. Eliminates manual console clicks and ensures consistent, repeatable deployments across environments.</div>
-        <div class="params-grid">
-          <div class="param"><i class="ti ti-photo"></i><span>AMI ID</span></div>
-          <div class="param"><i class="ti ti-cpu"></i><span>Instance type</span></div>
-          <div class="param"><i class="ti ti-tag"></i><span>EC2 name</span></div>
-          <div class="param"><i class="ti ti-network"></i><span>VPC ID</span></div>
-          <div class="param"><i class="ti ti-circle-dotted"></i><span>Subnet ID</span></div>
-          <div class="param"><i class="ti ti-shield"></i><span>Security group</span></div>
-          <div class="param"><i class="ti ti-map-pin"></i><span>Region</span></div>
-          <div class="param"><i class="ti ti-copy"></i><span>Instance count (N×)</span></div>
+        <div>
+          <div class="stat-num mono">20+</div>
+          <div class="stat-label">AWS Accounts</div>
         </div>
-        <div class="footer-note"><i class="ti ti-stack"></i>Scalable — same parameters spin up any number of identical instances</div>
-      </div>
-
-      <div class="detail-card">
-        <div class="detail-title">EC2 start/stop scheduling — AWS Instance Scheduler</div>
-        <div class="detail-desc" style="margin-bottom:0">Implemented automated EC2 start/stop schedules via AWS Instance Scheduler deployed as a CloudFormation stack. Schedules aligned to client business hours, reducing unnecessary runtime and cloud spend outside working windows.</div>
-      </div>
-
-      <div class="project-tags">
-        <span class="ptag">AWS EC2</span><span class="ptag">AWS Lambda</span><span class="ptag">CloudFormation</span><span class="ptag">Instance Scheduler</span><span class="ptag">IAM / cross-account</span><span class="ptag">Oracle Cloud</span><span class="ptag">RHEL / Linux</span><span class="ptag">Windows Server</span><span class="ptag">RHCSA</span>
+        <div>
+          <div class="stat-num mono">50%</div>
+          <div class="stat-label">Patch Time Reduced</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="sec-label">Skills</div>
-    <div class="skill-grid">
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="sec-tag">Technical Stack</div>
+    <h2>What I work with</h2>
+    <div class="skills-grid">
       <div class="skill-card">
-        <div class="sk-cat">Cloud</div>
-        <div class="sk-items">AWS (EC2, Lambda, IAM)<br>Oracle Cloud<br>Cross-account roles<br>CloudFormation / IaC</div>
+        <div class="skill-icon">☁️</div>
+        <div class="skill-name">Cloud Platforms</div>
+        <div class="skill-tags">
+          <span class="tag">AWS</span><span class="tag">OCI</span><span class="tag">Azure</span><span class="tag">GCP</span>
+        </div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">Automation</div>
-        <div class="sk-items">AWS Lambda<br>Instance Scheduler<br>EC2 backup & patching<br>GitLab CI/CD pipelines</div>
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-name">Infrastructure as Code</div>
+        <div class="skill-tags">
+          <span class="tag">Terraform</span><span class="tag">CloudFormation</span>
+        </div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">DevOps toolchain</div>
-        <div class="sk-items">GitLab (self-hosted)<br>GitHub<br>Artifactory<br>Kubernetes</div>
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Automation</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag amber">Bash</span><span class="tag">Lambda</span>
+        </div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">Systems</div>
-        <div class="sk-items">RHEL / Linux<br>Windows Server<br>Ubuntu<br>VM administration</div>
+        <div class="skill-icon">🔄</div>
+        <div class="skill-name">CI/CD</div>
+        <div class="skill-tags">
+          <span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span>
+        </div>
       </div>
       <div class="skill-card">
-        <div class="sk-cat">Ops & security</div>
-        <div class="sk-items">Backup & DR<br>Patch management<br>Access governance<br>Health monitoring</div>
+        <div class="skill-icon">🐳</div>
+        <div class="skill-name">Containers</div>
+        <div class="skill-tags">
+          <span class="tag green">Docker</span><span class="tag green">Kubernetes</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Observability</div>
+        <div class="skill-tags">
+          <span class="tag">Datadog</span><span class="tag">CloudWatch</span><span class="tag">SNS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔐</div>
+        <div class="skill-name">Security & IAM</div>
+        <div class="skill-tags">
+          <span class="tag amber">IAM</span><span class="tag amber">Secrets Mgr</span><span class="tag amber">SOX</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐧</div>
+        <div class="skill-name">Linux Admin</div>
+        <div class="skill-tags">
+          <span class="tag green">RHEL</span><span class="tag green">Amazon Linux</span><span class="tag green">RHCSA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="sec-tag">Featured Work</div>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div>
+          <div class="proj-title">Cross-Account AWS Backup Automation <span class="proj-badge">Production</span></div>
+          <div class="proj-desc">Automated SOX-compliant backup validation and reporting across 20+ AWS accounts using Python Lambda with cross-account IAM role assumption. Centralized monthly CSV aggregation replaced a fully manual audit process.</div>
+          <div class="proj-impact">↓ 70% manual audit effort eliminated</div>
+          <div class="proj-stack">
+            <span class="tag">Python</span><span class="tag">Lambda</span><span class="tag amber">IAM</span><span class="tag">AWS Backup</span><span class="tag">CloudWatch</span>
+          </div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <div class="proj-title">Zero-Day Windows Patch Automation <span class="proj-badge">Production</span></div>
+          <div class="proj-desc">End-to-end patch automation using AWS Systems Manager (SSM) Run Command and Lambda event triggers for KB-based Windows patch deployment across enterprise servers.</div>
+          <div class="proj-impact">↓ 50% patch cycle time — 6hrs → 3hrs</div>
+          <div class="proj-stack">
+            <span class="tag">AWS SSM</span><span class="tag">Lambda</span><span class="tag">Python</span><span class="tag amber">Windows Server</span>
+          </div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <div class="proj-title">Cloud Governance Automation Suite <span class="proj-badge">Platform</span></div>
+          <div class="proj-desc">Suite of Python and Bash scripts for GitLab inactive-user lifecycle management and JFrog Artifactory usage reporting across 50+ repositories. Improved cloud governance and reduced license waste.</div>
+          <div class="proj-impact">↓ ~10% monthly license cost reduction</div>
+          <div class="proj-stack">
+            <span class="tag">Python</span><span class="tag amber">Bash</span><span class="tag green">GitLab API</span><span class="tag green">Artifactory</span>
+          </div>
+        </div>
+        <div class="proj-arrow">→</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="sec-tag">Work History</div>
+    <h2>Experience</h2>
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-company">Deloitte</div>
+        <div class="exp-role">Cloud Platform Engineer / Hybrid Cloud Engineer</div>
+        <div class="exp-date mono">2019 – Present · Kolkata, India</div>
+        <ul class="exp-bullets">
+          <li>Architected and administered cloud infrastructure across 20+ AWS accounts managing 200+ production servers</li>
+          <li>Designed cross-account automation with Python Lambda + IAM role assumption — reduced manual overhead by 40%+</li>
+          <li>Implemented IaC pipelines using Terraform and CloudFormation across AWS, Azure, and OCI</li>
+          <li>Built monitoring and alerting with CloudWatch, SNS, and Datadog — improved MTTD for production incidents</li>
+          <li>Enforced cloud security controls for AWS Secrets Manager with user-level audit tracking and IAM governance</li>
+          <li>Managed Kubernetes-based application deployments for high-availability production environments</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section class="reveal">
+    <div class="sec-tag">Credentials</div>
+    <h2>Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon rh">🎓</div>
+        <div>
+          <div class="cert-name">RHCSA</div>
+          <div class="cert-year">Red Hat · 2024</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon aws">☁️</div>
+        <div>
+          <div class="cert-name">AWS Solutions Architect</div>
+          <div class="cert-year">Associate · In Progress</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="contact-inner">
+      <div class="sec-tag" style="justify-content:center">Contact</div>
+      <h2>Let's work together</h2>
+      <p class="contact-sub">Open to Cloud Platform Engineer, DevOps, and Infrastructure roles. Based in Kolkata — open to remote.</p>
+      <div class="contact-links">
+        <a href="mailto:sdeepchakraborty4@gmail.com" class="contact-link">✉ Email</a>
+        <a href="https://www.linkedin.com/in/saumyadeep-chakraborty/" class="contact-link">in LinkedIn</a>
+        <a href="https://github.com/Saumyadeep4" class="contact-link">{ } GitHub</a>
       </div>
     </div>
   </section>
 
 </div>
-</body>
-</html>
+
+<footer>
+  <div class="mono">saumyadeep.online · built with GitHub Pages</div>
+</footer>
+
+<script>
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+
+class Particle{
+  constructor(){this.reset()}
+  reset(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-0.5)*0.3;this.vy=(Math.random()-0.5)*0.3;
+    this.r=Math.random()*1.5+0.5;this.alpha=Math.random()*0.4+0.1;
+    this.color=Math.random()>0.5?'79,158,255':'0,212,170';
+  }
+  update(){
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${this.color},${this.alpha})`;ctx.fill();
+  }
+}
+
+for(let i=0;i<120;i++)particles.push(new Particle());
+
+function drawConnections(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x;
+      const dy=particles[i].y-particles[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<100){
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(79,158,255,${0.08*(1-d/100)})`;
+        ctx.lineWidth=0.5;ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{p.update();p.draw()});
+  drawConnections();
+  requestAnimationFrame(animate);
+}
+animate();
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
