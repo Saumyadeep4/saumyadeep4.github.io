@@ -185,6 +185,90 @@
   }
   .project-card:hover .proj-arrow{color:var(--accent)}
 
+  /* ARCHITECTURE DIAGRAMS */
+  .arch-diagram{
+    margin-top:22px;
+    padding:18px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:rgba(255,255,255,0.02);
+    overflow-x:auto;
+  }
+
+  .arch-title{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    margin-bottom:14px;
+  }
+
+  .diagram-flow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .diagram-node{
+    min-width:110px;
+    padding:12px 14px;
+    border-radius:10px;
+    background:var(--bg3);
+    border:1px solid var(--border);
+    text-align:center;
+    position:relative;
+  }
+
+  .diagram-node.aws{
+    border-color:rgba(79,158,255,0.35);
+    background:rgba(79,158,255,0.08);
+  }
+
+  .diagram-node.security{
+    border-color:rgba(245,158,11,0.35);
+    background:rgba(245,158,11,0.08);
+  }
+
+  .diagram-node.compute{
+    border-color:rgba(0,212,170,0.35);
+    background:rgba(0,212,170,0.08);
+  }
+
+  .diagram-node.storage{
+    border-color:rgba(168,85,247,0.35);
+    background:rgba(168,85,247,0.08);
+  }
+
+  .diagram-label{
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:4px;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  .diagram-name{
+    font-size:13px;
+    font-weight:600;
+    color:var(--text);
+    line-height:1.4;
+  }
+
+  .diagram-arrow{
+    color:var(--accent);
+    font-size:18px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+
+  .diagram-stack{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+
   /* EXPERIENCE */
   .exp-timeline{position:relative;padding-left:28px}
   .exp-timeline::before{
@@ -228,20 +312,125 @@
   .cert-year{font-size:12px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace}
 
   /* CONTACT */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+  }
+
+  .contact-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:18px 20px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    text-decoration:none;
+    color:var(--text);
+    transition:all 0.2s;
+    background:var(--card);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .contact-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:3px;
+    height:100%;
+    background:linear-gradient(180deg,var(--accent),var(--accent2));
+    opacity:0;
+    transition:opacity 0.25s;
+  }
+
+  .contact-card:hover::before{
+    opacity:1;
+  }
+
+  .contact-card:hover{
+    border-color:rgba(79,158,255,0.3);
+    transform:translateY(-2px);
+    background:#141e2f;
+  }
+
+  .contact-icon{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    font-size:16px;
+    background:rgba(79,158,255,0.08);
+    border:1px solid rgba(79,158,255,0.15);
+    color:var(--accent);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  .contact-label{
+    font-size:11px;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:4px;
+  }
+
+  .contact-value{
+    font-size:14px;
+    font-weight:500;
+    color:var(--text);
+  }
+
+  /* CONTACT SECTION */
   .contact-inner{
-    background:var(--card);border:1px solid var(--border);
-    border-radius:20px;padding:48px;text-align:center;
+    max-width:700px;
+    margin:0 auto;
+    text-align:center;
   }
-  .contact-inner h2{margin-bottom:16px}
-  .contact-sub{font-size:16px;color:var(--muted);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
-  .contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+  .contact-sub{
+    font-size:16px;
+    color:var(--muted);
+    line-height:1.7;
+    margin-bottom:40px;
+    max-width:560px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .contact-links{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
   .contact-link{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;
-    text-decoration:none;transition:all 0.2s;
-    border:1px solid var(--border);color:var(--text);
+    padding:12px 28px;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:500;
+    border:1px solid var(--border);
+    color:var(--text);
+    text-decoration:none;
+    transition:all 0.2s;
+    background:transparent;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    letter-spacing:0.02em;
   }
-  .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+  .contact-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    background:rgba(79,158,255,0.05);
+    transform:translateY(-2px);
+  }
 
   /* FOOTER */
   footer{
@@ -285,6 +474,7 @@
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View Projects →</a>
         <a href="#contact" class="btn-outline">Get in Touch</a>
+        <a href="resume.pdf" class="btn-outline" download>Download Resume</a>
       </div>
       <div class="stats">
         <div>
@@ -385,6 +575,53 @@
           <div class="proj-stack">
             <span class="tag">Python</span><span class="tag">Lambda</span><span class="tag amber">IAM</span><span class="tag">AWS Backup</span><span class="tag">CloudWatch</span>
           </div>
+
+          <div class="arch-diagram">
+            <div class="arch-title">Architecture Flow</div>
+
+            <div class="diagram-flow">
+
+              <div class="diagram-node aws">
+                <div class="diagram-label">Trigger</div>
+                <div class="diagram-name">EventBridge</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node compute">
+                <div class="diagram-label">Automation</div>
+                <div class="diagram-name">Lambda<br>CrossAccountBackup</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node security">
+                <div class="diagram-label">Access</div>
+                <div class="diagram-name">STS<br>AssumeRole</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node aws">
+                <div class="diagram-label">Backup</div>
+                <div class="diagram-name">AWS Backup</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node storage">
+                <div class="diagram-label">Reporting</div>
+                <div class="diagram-name">S3 + CSV Reports</div>
+              </div>
+
+            </div>
+
+            <div class="diagram-stack">
+              <span class="tag">CrossAccountBackup.py</span>
+              <span class="tag">VerifyBackupStatus.py</span>
+              <span class="tag amber">Multi-Account</span>
+            </div>
+          </div>
         </div>
         <div class="proj-arrow">→</div>
       </div>
@@ -397,6 +634,53 @@
           <div class="proj-stack">
             <span class="tag">AWS SSM</span><span class="tag">Lambda</span><span class="tag">Python</span><span class="tag amber">Windows Server</span>
           </div>
+
+          <div class="arch-diagram">
+            <div class="arch-title">Architecture Flow</div>
+
+            <div class="diagram-flow">
+
+              <div class="diagram-node aws">
+                <div class="diagram-label">Trigger</div>
+                <div class="diagram-name">EventBridge</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node compute">
+                <div class="diagram-label">Automation</div>
+                <div class="diagram-name">Lambda<br>CrossAccountPatchingWindows</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node security">
+                <div class="diagram-label">Execution</div>
+                <div class="diagram-name">AWS SSM<br>Run Command</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node compute">
+                <div class="diagram-label">Target</div>
+                <div class="diagram-name">Windows EC2<br>Instances</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node storage">
+                <div class="diagram-label">Validation</div>
+                <div class="diagram-name">VerifyWindowsPatchesApplied</div>
+              </div>
+
+            </div>
+
+            <div class="diagram-stack">
+              <span class="tag">CrossAccountPatchingWindows.py</span>
+              <span class="tag">VerifyWindowsPatchesApplied.py</span>
+              <span class="tag amber">Patch Orchestration</span>
+            </div>
+          </div>
         </div>
         <div class="proj-arrow">→</div>
       </div>
@@ -408,6 +692,46 @@
           <div class="proj-impact">↓ ~10% monthly license cost reduction</div>
           <div class="proj-stack">
             <span class="tag">Python</span><span class="tag amber">Bash</span><span class="tag green">GitLab API</span><span class="tag green">Artifactory</span>
+          </div>
+
+          <div class="arch-diagram">
+            <div class="arch-title">Architecture Flow</div>
+
+            <div class="diagram-flow">
+
+              <div class="diagram-node compute">
+                <div class="diagram-label">Monitoring</div>
+                <div class="diagram-name">CloudTrail Events</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node aws">
+                <div class="diagram-label">Detection</div>
+                <div class="diagram-name">Lambda<br>Secret Access Monitor</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node security">
+                <div class="diagram-label">Audit</div>
+                <div class="diagram-name">Secrets Manager<br>Access Tracking</div>
+              </div>
+
+              <div class="diagram-arrow">→</div>
+
+              <div class="diagram-node storage">
+                <div class="diagram-label">Alerting</div>
+                <div class="diagram-name">SNS Notifications</div>
+              </div>
+
+            </div>
+
+            <div class="diagram-stack">
+              <span class="tag">cmsadminSecretValueNotification.py</span>
+              <span class="tag green">Governance Automation</span>
+              <span class="tag amber">Security Monitoring</span>
+            </div>
           </div>
         </div>
         <div class="proj-arrow">→</div>
@@ -468,9 +792,9 @@
 
 </div>
 
-<footer>
+<!-- <footer>
   <div class="mono">saumyadeep.online · built with GitHub Pages</div>
-</footer>
+</footer> -->
 
 <script>
 const canvas=document.getElementById('canvas');
