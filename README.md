@@ -2,4 +2,4 @@
 
 Live portfolio:
 
-👉 https://saumyadeep4.github.io
+👉 https://saumyadeep.online
