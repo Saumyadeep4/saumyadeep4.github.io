@@ -605,7 +605,7 @@
     <div class="sec-tag">Featured Work</div>
     <h2>Projects</h2>
     <div class="projects-grid">
-
+      <div class="projects-grid">
       <div class="project-card">
         <div>
           <div class="proj-title">MusicControl <span class="proj-badge">macOS App</span></div>
@@ -614,12 +614,43 @@
           <div class="proj-stack">
             <span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag green">macOS</span><span class="tag">Apple Music</span><span class="tag">Spotify</span>
           </div>
+          <div class="arch-diagram">
+  <div class="arch-title">Architecture Flow</div>
+  <div class="diagram-flow">
+    <div class="diagram-node aws">
+      <div class="diagram-label">Media Sources</div>
+      <div class="diagram-name">Apple Music<br>Spotify Desktop</div>
+    </div>
+    <div class="diagram-arrow">→</div>
+    <div class="diagram-node compute">
+      <div class="diagram-label">Playback Bridge</div>
+      <div class="diagram-name">PlayerStore<br>AppleScript</div>
+    </div>
+    <div class="diagram-arrow">→</div>
+    <div class="diagram-node storage">
+      <div class="diagram-label">Presentation</div>
+      <div class="diagram-name">SwiftUI Views</div>
+    </div>
+  </div>
+  <div class="diagram-stack">
+    <span class="tag">Menu Bar Popover</span>
+    <span class="tag green">Notch Mini Player</span>
+    <span class="tag amber">Track Details · Artwork · Controls</span>
+  </div>
+</div>
+
           <div class="proj-links">
+
             <a class="proj-link" href="https://github.com/Saumyadeep4/MusicControl" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a>
+
           </div>
+
         </div>
+
         <div class="proj-arrow">→</div>
+
       </div>
+
 
       <div class="project-card">
         <div>
