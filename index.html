@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Saumyadeep Chakraborty | Cloud Platform Engineer</title>
-<meta name="description" content="Cloud Platform Engineer with 6+ years building and automating enterprise infrastructure on AWS, Terraform, Python and Linux. RHCSA certified. Based in Kolkata, India.">
+<meta name="description" content="Cloud Platform Engineer with 5+ years building and automating enterprise infrastructure on AWS, Terraform, Python and Linux. RHCSA certified. Based in Kolkata, India.">
 <meta name="author" content="Saumyadeep Chakraborty">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Saumyadeep Chakraborty | Cloud Platform Engineer">
@@ -43,6 +43,8 @@
   #canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.35}
 
   .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 24px}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:200;transform:translateY(-160%);padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-size:13px;transition:transform .2s}
+  .skip-link:focus{transform:translateY(0)}
 
   /* NAV */
   nav{
@@ -57,6 +59,7 @@
   .nav-links{display:flex;gap:28px}
   .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;letter-spacing:0.03em}
   .nav-links a:hover{color:var(--accent)}
+  .nav-links a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible,.proj-link:focus-visible,.contact-link:focus-visible{outline:2px solid var(--accent2);outline-offset:4px}
 
   /* HERO */
   .hero{
@@ -482,9 +485,14 @@
     .diagram-arrow{align-self:center;transform:rotate(90deg)}
     .hero-btns{gap:12px}
   }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <canvas id="canvas"></canvas>
 
@@ -499,7 +507,7 @@
   </div>
 </nav>
 
-<div class="wrap">
+<main id="main" class="wrap">
 
   <!-- HERO -->
   <section class="hero" id="about">
@@ -509,7 +517,7 @@
         Available for Cloud Platform roles
       </div>
       <h1>Hi, I'm <span class="name">Saumyadeep</span><br>Chakraborty</h1>
-      <p class="hero-sub">Cloud Platform Engineer with 6+ years building and automating enterprise infrastructure at scale — AWS, Terraform, Python, Linux. RHCSA certified. Based in Kolkata, India.</p>
+      <p class="hero-sub">Cloud Platform Engineer with 5+ years building and automating enterprise infrastructure at scale — AWS, Terraform, Python, Linux. RHCSA certified. Based in Kolkata, India.</p>
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View Projects →</a>
         <a href="#contact" class="btn-outline">Get in Touch</a>
@@ -517,7 +525,7 @@
       </div>
       <div class="stats">
         <div>
-          <div class="stat-num mono">6+</div>
+        <div class="stat-num mono">5+</div>
           <div class="stat-label">Years Experience</div>
         </div>
         <div>
@@ -605,7 +613,6 @@
     <div class="sec-tag">Featured Work</div>
     <h2>Projects</h2>
     <div class="projects-grid">
-      <div class="projects-grid">
       <div class="project-card">
         <div>
           <div class="proj-title">MusicControl <span class="proj-badge">macOS App</span></div>
@@ -875,7 +882,7 @@
     </div>
   </section>
 
-</div>
+</main>
 
 <!-- <footer>
   <div class="mono">saumyadeep.online · built with GitHub Pages</div>
